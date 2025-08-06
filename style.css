@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+}
+
+.container-fluid {
+    padding: 0;
+    width: 1920px;
+    height: 1080px;
+}
+
+.table {
+    height: 100%;
+}
