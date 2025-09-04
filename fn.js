@@ -37,7 +37,7 @@ function convertCurrency(amount, from, to) {
   } else if (from.toLowerCase() === to.toLowerCase()) {
     return (+amount).toFixed(2);
   } else if (from.toLowerCase() === "bgn" && to.toLowerCase() === "eur") {
-    return (+amount * 0.51129).toFixed(2);
+    return (+amount / 1.95583).toFixed(2);
   } else if (from.toLowerCase() === "eur" && to.toLowerCase() === "bgn") {
     return (+amount * 1.95583).toFixed(2);
   } else {
@@ -52,8 +52,7 @@ function getDisplayParam() {
     displayParam &&
     displayParam !== "" &&
     (displayParam.toLowerCase() === "tv1" ||
-      displayParam.toLowerCase() === "tv2" ||
-      displayParam.toLowerCase() === "tv3")
+      displayParam.toLowerCase() === "tv2")
   )
     return displayParam;
   else return "all";
