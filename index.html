@@ -92,10 +92,10 @@
           let right = rs.slice(half);
           let rightIndex = 0;
           left.forEach((p) => {
-            leftIndex = fillTable(table_left, leftIndex, p);
+            leftIndex = insertRow(table_left, leftIndex, p);
           });
           right.forEach((p) => {
-            rightIndex = fillTable(table_right, rightIndex, p);
+            rightIndex = insertRow(table_right, rightIndex, p);
           });
         })
         .catch(console.log);

@@ -5,3 +5,15 @@ body {
 .container-fluid {
     padding: 0;
 }
+
+.table {
+    height: 100%;
+}
+
+tbody tr:nth-child(even) {
+    height: 65px;
+}
+
+#pizzas_left {
+    border-right: 2px solid white;
+}

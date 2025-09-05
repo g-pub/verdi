@@ -70,7 +70,7 @@ function checkDates(from, to) {
   );
 }
 
-function fillTable(table, tableIndex, p) {
+function insertRow(table, tableIndex, p) {
   let currentRow = table.insertRow(tableIndex);
   let title = currentRow.insertCell(0);
   title.innerHTML = p.title;
