@@ -20,7 +20,7 @@
           <table class="table table-dark align-middle">
             <thead class="thead-dark">
               <tr>
-                <th scope="col" class="col-9"></th>
+                <th scope="col" class="col-9" id="size"></th>
                 <th scope="col" class="col=1" style="background-color: #d20c16">
                   25см
                 </th>
@@ -63,6 +63,8 @@
     ></script>
     <script src="fn.js"></script>
     <script>
+      let s = document.getElementById("size");
+      s.innerHTML = `в:${window.screen.availHeight} ш:${window.screen.availWidth}`
       let table_left = document.getElementById("pizzas_left");
       let table_right = document.getElementById("pizzas_right");
       fetch("pizza.csv")
