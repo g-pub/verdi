@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .container-fluid {
@@ -9,11 +9,14 @@ body {
 
 .table {
     height: 100%;
-    width: 100%;
+}
+
+tbody tr:nth-child(4) {
+    height: 65px;
 }
 
 tbody tr:nth-child(even) {
-    height: 65px;
+    font-size: 9px;
 }
 
 #pizzas_left {
