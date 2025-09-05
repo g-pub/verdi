@@ -15,17 +15,46 @@
   </head>
   <body>
     <div class="container-fluid">
-      <table class="table table-dark table-striped align-middle">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col" class="col-6"></th>
-            <th scope="col" class="col-2">Ф23</th>
-            <th scope="col" class="col-2">ф30</th>
-            <th scope="col" class="col-2">ф36</th>
-          </tr>
-        </thead>
-        <tbody id="pizzas"></tbody>
-      </table>
+      <div class="row" style="margin: 0">
+        <div class="col-6" style="padding: 0">
+          <table class="table table-dark align-middle">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" class="col-9"></th>
+                <th scope="col" class="col=1" style="background-color: #d20c16">
+                  25см
+                </th>
+                <th scope="col" class="col-1" style="background-color: #d20c16">
+                  30см
+                </th>
+                <th scope="col" class="col-1" style="background-color: #d20c16">
+                  36см
+                </th>
+              </tr>
+            </thead>
+            <tbody id="pizzas_left"></tbody>
+          </table>
+        </div>
+        <div class="col-6" style="padding: 0">
+          <table class="table table-dark align-middle">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" class="col-9"></th>
+                <th scope="col" class="col=1" style="background-color: #d20c16">
+                  25см
+                </th>
+                <th scope="col" class="col-1" style="background-color: #d20c16">
+                  30см
+                </th>
+                <th scope="col" class="col-1" style="background-color: #d20c16">
+                  36см
+                </th>
+              </tr>
+            </thead>
+            <tbody id="pizzas_right"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -34,7 +63,8 @@
     ></script>
     <script src="fn.js"></script>
     <script>
-      let table = document.getElementById("pizzas");
+      let table_left = document.getElementById("pizzas_left");
+      let table_right = document.getElementById("pizzas_right");
       fetch("pizza.csv")
         .then((response) => {
           if (!response.ok) throw new Error(`Грешка: ${response.status}`);
@@ -42,10 +72,9 @@
         })
         .then(csvToArray)
         .then((l) => {
-          let tableIndex = 0;
+          const rs = [];
           l.forEach((p) => {
             if (!isRowValid(p)) {
-              console.log(`Грешка: ред ${tableIndex} съдържа невалиден запис`);
               return;
             }
             if (
@@ -53,34 +82,20 @@
               getDisplayParam() !== "all" &&
               getDisplayParam() !== p.display
             ) {
-              console.log(`Реда се прескача, не е за този екран: ${p.title}`);
               return;
             }
-            // име, 23, 30, 36
-            let currentRow = table.insertRow(tableIndex);
-            currentRow.insertCell(0).innerHTML = p.title;
-            currentRow.insertCell(1).innerHTML = `${convertCurrency(
-              p.price_23,
-              p.currency,
-              "bgn"
-            )}лв. / ${convertCurrency(p.price_23, p.currency, "eur")}€`;
-            currentRow.insertCell(2).innerHTML = `${convertCurrency(
-              p.price_30,
-              p.currency,
-              "bgn"
-            )}лв. / ${convertCurrency(p.price_30, p.currency, "eur")}€`;
-            currentRow.insertCell(3).innerHTML = `${convertCurrency(
-              p.price_36,
-              p.currency,
-              "bgn"
-            )}лв. / ${convertCurrency(p.price_36, p.currency, "eur")}€`;
-            tableIndex++;
-            // съставки
-            let currentRowIngridients = table.insertRow(tableIndex);
-            let ingridients = currentRowIngridients.insertCell(0);
-            ingridients.innerHTML = p.ingridients;
-            ingridients.colSpan = "4";
-            tableIndex++;
+            rs.push(p);
+          });
+          const half = Math.ceil(rs.length / 2);
+          let left = rs.slice(0, half);
+          let leftIndex = 0;
+          let right = rs.slice(half);
+          let rightIndex = 0;
+          left.forEach((p) => {
+            leftIndex = fillTable(table_left, leftIndex, p);
+          });
+          right.forEach((p) => {
+            rightIndex = fillTable(table_right, rightIndex, p);
           });
         })
         .catch(console.log);

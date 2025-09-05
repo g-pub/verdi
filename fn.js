@@ -21,7 +21,7 @@ function isRowValid(row) {
     row.ingridients &&
     row.ingridients !== "" &&
     checkDates(row.from_date, row.to_date) &&
-    +row.price_23 !== NaN &&
+    +row.price_25 !== NaN &&
     +row.price_30 !== NaN &&
     +row.price_36 !== NaN &&
     row.currency &&
@@ -68,4 +68,41 @@ function checkDates(from, to) {
     (isNaN(f) && !isNaN(t) && c <= t) ||
     (isNaN(t) && isNaN(t))
   );
+}
+
+function fillTable(table, tableIndex, p) {
+  let currentRow = table.insertRow(tableIndex);
+  let title = currentRow.insertCell(0);
+  title.innerHTML = p.title;
+  title.style.fontWeight = "bold";
+  let p25 = currentRow.insertCell(1);
+  p25.innerHTML = `${convertCurrency(
+    p.price_25,
+    p.currency,
+    "bgn"
+  )}лв. / ${convertCurrency(p.price_25, p.currency, "eur")}€`;
+  p25.style.fontWeight = "bold";
+  let p30 = currentRow.insertCell(2);
+  p30.innerHTML = `${convertCurrency(
+    p.price_30,
+    p.currency,
+    "bgn"
+  )}лв. / ${convertCurrency(p.price_30, p.currency, "eur")}€`;
+  p30.style.fontWeight = "bold";
+  let p36 = currentRow.insertCell(3);
+  p36.innerHTML = `${convertCurrency(
+    p.price_36,
+    p.currency,
+    "bgn"
+  )}лв. / ${convertCurrency(p.price_36, p.currency, "eur")}€`;
+  p36.style.fontWeight = "bold";
+  tableIndex++;
+  // съставки
+  let currentRowIngridients = table.insertRow(tableIndex);
+  let ingridients = currentRowIngridients.insertCell(0);
+  ingridients.innerHTML = p.ingridients;
+  ingridients.colSpan = "4";
+  ingridients.style.fontStyle = "italic";
+  tableIndex++;
+  return tableIndex;
 }
