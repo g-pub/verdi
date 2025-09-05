@@ -4,8 +4,6 @@ body {
 
 .container-fluid {
     padding: 0;
-    width: 4096px;
-    height: 2160px;
 }
 
 .table {
