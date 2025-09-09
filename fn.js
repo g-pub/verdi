@@ -71,34 +71,42 @@ function checkDates(from, to) {
 }
 
 function insertRow(table, tableIndex, p) {
-  let currentRow = table.insertRow(tableIndex);
-  let title = currentRow.insertCell(0);
+  let currentRowBGN = table.insertRow(tableIndex);
+  let title = currentRowBGN.insertCell(0);
   title.innerHTML = p.title;
   title.style.fontWeight = "bold";
-  let p25 = currentRow.insertCell(1);
-  p25.innerHTML = `${convertCurrency(
-    p.price_25,
-    p.currency,
-    "bgn"
-  )}лв. / ${convertCurrency(p.price_25, p.currency, "eur")}€`;
-  p25.style.fontWeight = "bold";
-  let p30 = currentRow.insertCell(2);
-  p30.innerHTML = `${convertCurrency(
-    p.price_30,
-    p.currency,
-    "bgn"
-  )}лв. / ${convertCurrency(p.price_30, p.currency, "eur")}€`;
-  p30.style.fontWeight = "bold";
-  let p36 = currentRow.insertCell(3);
-  p36.innerHTML = `${convertCurrency(
-    p.price_36,
-    p.currency,
-    "bgn"
-  )}лв. / ${convertCurrency(p.price_36, p.currency, "eur")}€`;
-  p36.style.fontWeight = "bold";
+  title.rowSpan = "2";
+  title.className = "title";
+  let p25bgn = currentRowBGN.insertCell(1);
+  p25bgn.innerHTML = `${convertCurrency(p.price_25, p.currency, "bgn")}лв.`;
+  p25bgn.style.fontWeight = "bold";
+  p25bgn.className = "price";
+  let p30bgn = currentRowBGN.insertCell(2);
+  p30bgn.innerHTML = `${convertCurrency(p.price_30, p.currency, "bgn")}лв.`;
+  p30bgn.style.fontWeight = "bold";
+  p30bgn.className = "price";
+  let p36bgn = currentRowBGN.insertCell(3);
+  p36bgn.innerHTML = `${convertCurrency(p.price_36, p.currency, "bgn")}лв.`;
+  p36bgn.style.fontWeight = "bold";
+  p36bgn.className = "price";
+  tableIndex++;
+  let currentRowEUR = table.insertRow(tableIndex);
+  let p25eur = currentRowEUR.insertCell(0);
+  p25eur.innerHTML = `${convertCurrency(p.price_25, p.currency, "eur")}€`;
+  p25eur.style.fontWeight = "bold";
+  p25eur.className = "price";
+  let p30eur = currentRowEUR.insertCell(1);
+  p30eur.innerHTML = `${convertCurrency(p.price_30, p.currency, "eur")}€`;
+  p30eur.style.fontWeight = "bold";
+  p30eur.className = "price";
+  let p36eur = currentRowEUR.insertCell(2);
+  p36eur.innerHTML = `${convertCurrency(p.price_36, p.currency, "eur")}€`;
+  p36eur.style.fontWeight = "bold";
+  p36eur.className = "price";
   tableIndex++;
   // съставки
   let currentRowIngridients = table.insertRow(tableIndex);
+  currentRowIngridients.className = "ingridients";
   let ingridients = currentRowIngridients.insertCell(0);
   ingridients.innerHTML = p.ingridients;
   ingridients.colSpan = "4";
