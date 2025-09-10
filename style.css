@@ -27,7 +27,7 @@ body {
 }
 
 .table > :not(caption) > * > * {
-  padding: 2px 2px;
+  padding: 0px 0px 1px 0px;
 }
 
 #pizzas_left {
@@ -50,14 +50,19 @@ thead tr th:nth-child(4) {
 }
 
 .title {
-    font-size: 1.2rem;
-    vertical-align: bottom;
+  font-size: 1.1rem;
+  vertical-align: bottom;
+  padding-left: 5px !important;
 }
 
 .price {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .ingridients {
-    font-size: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.ingridients td {
+  padding-left: 2px;
 }
