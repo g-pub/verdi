@@ -75,7 +75,7 @@ function insertRow(table, tableIndex, p) {
   let title = currentFirstRow.insertCell(0);
   title.innerHTML = p.title;
   title.style.fontWeight = "bold";
-  title.rowSpan = "2";
+  title.rowSpan = "1";
   title.className = "title";
   let p25bgn = currentFirstRow.insertCell(1);
   p25bgn.innerHTML = `${convertCurrency(p.price_25, p.currency, "eur")}€`;
@@ -89,20 +89,6 @@ function insertRow(table, tableIndex, p) {
   p36bgn.innerHTML = `${convertCurrency(p.price_36, p.currency, "eur")}€`;
   p36bgn.style.fontWeight = "bold";
   p36bgn.className = "price";
-  tableIndex++;
-  let currentSecondRow= table.insertRow(tableIndex);
-  let p25eur = currentSecondRow.insertCell(0);
-  p25eur.innerHTML = `${convertCurrency(p.price_25, p.currency, "bgn")}лв.`;
-  p25eur.style.fontWeight = "bold";
-  p25eur.className = "price";
-  let p30eur = currentSecondRow.insertCell(1);
-  p30eur.innerHTML = `${convertCurrency(p.price_30, p.currency, "bgn")}лв.`;
-  p30eur.style.fontWeight = "bold";
-  p30eur.className = "price";
-  let p36eur = currentSecondRow.insertCell(2);
-  p36eur.innerHTML = `${convertCurrency(p.price_36, p.currency, "bgn")}лв.`;
-  p36eur.style.fontWeight = "bold";
-  p36eur.className = "price";
   tableIndex++;
   // съставки
   let currentRowIngridients = table.insertRow(tableIndex);
